@@ -21,5 +21,5 @@ export default defineConfig({
     // Set NITRO_PRESET=node-server locally if you want to test the node server build.
     preset,
     errorHandler: "./src/lib/nitro-error-handler.ts",
-  },
+  } as any,
 });
