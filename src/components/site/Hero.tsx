@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Users, Star } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 

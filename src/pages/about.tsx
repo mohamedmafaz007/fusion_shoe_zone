@@ -1,22 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { PageHeader } from "@/components/site/PageHeader";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { Features } from "@/components/site/Features";
 import { Clock, Users, ShoppingBag, Star, Award } from "lucide-react";
 
-export const Route = createFileRoute("/about")({
-  component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: "About Us · Fusion Shoe Zone" },
-      { name: "description", content: "The story behind Fusion Shoe Zone & Accessories — premium shoes, men accessories and kids fashion." },
-      { property: "og:title", content: "About Us · Fusion Shoe Zone" },
-      { property: "og:description", content: "Affordable luxury and thoughtful service — that's the Fusion promise." },
-    ],
-  }),
-});
 
-function AboutPage() {
+
+export default function AboutPage() {
   return (
     <>
       <PageHeader

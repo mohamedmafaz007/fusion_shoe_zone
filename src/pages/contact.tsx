@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { PageHeader } from "@/components/site/PageHeader";
 import { Section } from "@/components/site/Section";
 import { Input } from "@/components/ui/input";
@@ -10,17 +10,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/contact")({
-  component: ContactPage,
-  head: () => ({
-    meta: [
-      { title: "Contact Us · Fusion Shoe Zone" },
-      { name: "description", content: "Get in touch with Fusion Shoe Zone & Accessories — store details, hours and support." },
-      { property: "og:title", content: "Contact Us · Fusion Shoe Zone" },
-      { property: "og:description", content: "We'd love to hear from you. Reach out anytime." },
-    ],
-  }),
-});
+
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -29,7 +19,7 @@ const schema = z.object({
   message: z.string().trim().min(5, "Please share a bit more").max(1000),
 });
 
-function ContactPage() {
+export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   return (
     <>

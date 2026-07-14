@@ -1,7 +1,7 @@
 import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
 import type { Product } from "@/data/products";
 import { useStore } from "@/lib/store";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addToCart, toggleWishlist, inWishlist } = useStore();

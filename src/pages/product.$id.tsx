@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link, useParams } from "react-router-dom";
 import { findProduct, byCategory } from "@/data/products";
 import { useState, useRef } from "react";
 import { Heart, ShoppingBag, Star, Package, Truck, RotateCcw, ThumbsUp } from "lucide-react";
@@ -8,13 +8,11 @@ import { Section, SectionHeader } from "@/components/site/Section";
 import { ProductGrid } from "@/components/site/ProductGrid";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/product/$id")({
-  component: ProductPage,
-});
 
-function ProductPage() {
-  const { id } = Route.useParams();
-  const product = findProduct(id);
+
+export default function ProductPage() {
+  const { id } = useParams();
+  const product = id ? findProduct(id) : undefined;
   const { addToCart, toggleWishlist, inWishlist } = useStore();
   
   if (!product) {

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link  } from "react-router-dom";
 import { Hero } from "@/components/site/Hero";
 import { Section, SectionHeader } from "@/components/site/Section";
 import { CategoryCards } from "@/components/site/CategoryCards";
@@ -10,17 +10,9 @@ import { Testimonials } from "@/components/site/Testimonials";
 import { InstagramGallery } from "@/components/site/InstagramGallery";
 import { ArrowRight } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  component: Home,
-  head: () => ({
-    meta: [
-      { title: "Fusion Shoe Zone & Accessories · Walk it. Wear it. Love it." },
-      { name: "description", content: "Discover premium shoes, stylish men accessories and kids fashion at Fusion Shoe Zone & Accessories." },
-    ],
-  }),
-});
 
-function Home() {
+
+export default function Home() {
   return (
     <>
       <Hero />

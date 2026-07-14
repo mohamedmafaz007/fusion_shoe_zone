@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import {
   Search,
   Heart,
@@ -77,8 +77,7 @@ function MobileNavLink({
             {link.dropdown.map((item) => (
               <Link
                 key={item.label}
-                to={item.to}
-                search={item.search}
+                to={`${item.to}?subcategory=${item.search.subcategory}`}
                 className="px-4 py-2 rounded-lg text-base font-medium text-white/70 hover:text-white hover:bg-white/10 transition"
                 onClick={onClose}
               >
@@ -108,7 +107,7 @@ export function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cartCount, wishlist } = useStore();
-  const { location } = useRouterState();
+  const location = useLocation();
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 20);
@@ -160,8 +159,7 @@ export function Navbar() {
                       {l.dropdown.map((item) => (
                         <Link
                           key={item.label}
-                          to={item.to}
-                          search={item.search}
+                          to={`${item.to}?subcategory=${item.search.subcategory}`}
                           className="block px-4 py-2 text-sm text-white/90 hover:text-white hover:bg-white/10 transition"
                         >
                           {item.label}
@@ -304,8 +302,7 @@ export function Navbar() {
                   .map(product => (
                     <Link
                       key={product.id}
-                      to="/product/$id"
-                      params={{ id: product.id }}
+                      to={`/product/${product.id}`}
                       onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
                       className="flex items-center gap-4 p-3 hover:bg-white/10 transition border-b border-border/10 last:border-0"
                     >
