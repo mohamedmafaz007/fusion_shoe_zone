@@ -28,9 +28,11 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   const body = await response.clone().text();
   if (!isH3SwallowedErrorBody(body)) return response;
 
+  // Log the real error (server-side only) so it appears in Vercel function logs.
   const err = consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`);
-  console.error(err);
-  return new Response(renderErrorPage(err), {
+  console.error("[SSR] Catastrophic render error:", err);
+
+  return new Response(renderErrorPage(), {
     status: 500,
     headers: { "content-type": "text/html; charset=utf-8" },
   });
@@ -52,8 +54,8 @@ export default {
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
     } catch (error) {
-      console.error(error);
-      return new Response(renderErrorPage(error), {
+      console.error("[SSR] Unhandled server error:", error);
+      return new Response(renderErrorPage(), {
         status: 500,
         headers: { "content-type": "text/html; charset=utf-8" },
       });
