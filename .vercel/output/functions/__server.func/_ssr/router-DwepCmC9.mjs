@@ -13,10 +13,10 @@ import { a as DialogOverlay, c as DialogTrigger, i as DialogDescription, n as Di
 import { t as Route$10 } from "./product._id-CsRlzsSr.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-AY8C6_Rt.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DwepCmC9.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-DOHC40aT.css";
+var styles_default = "/assets/styles-NHch0_3L.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -827,6 +827,16 @@ function ErrorComponent({ error, reset }) {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-2 text-sm text-muted-foreground",
 					children: "Something went wrong on our end. You can try refreshing or head back home."
+				}),
+				error && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "mt-4 text-left bg-muted border border-border rounded-lg p-4 overflow-x-auto text-xs font-mono max-h-60 max-w-full",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "font-bold text-destructive mb-1",
+						children: error.message || String(error)
+					}), error.stack && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+						className: "whitespace-pre",
+						children: error.stack
+					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "mt-6 flex flex-wrap justify-center gap-2",
