@@ -20,7 +20,7 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
     // For truly unexpected errors, return a clean HTML fallback.
     // The root errorComponent in __root.tsx handles errors that occur during
     // React rendering — this catches errors that happen before React even runs.
-    return new Response(renderErrorPage(), {
+    return new Response(renderErrorPage(error), {
       status: 500,
       headers: { "content-type": "text/html; charset=utf-8" },
     });

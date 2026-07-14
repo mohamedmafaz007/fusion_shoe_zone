@@ -7,7 +7,13 @@
  * security risk and was causing the "h3 swallowed SSR error" message to be
  * displayed directly to users in production.
  */
-export function renderErrorPage(_error?: unknown): string {
+export function renderErrorPage(error?: unknown): string {
+  const errorMsg = error instanceof Error ? error.message : typeof error === "string" ? error : "";
+  const errorStack = error instanceof Error ? error.stack : "";
+  const errorComment = errorMsg
+    ? `\n<!-- \n=========================================\nERROR DETAILS (for debugging):\nMessage: ${errorMsg}\nStack:\n${errorStack}\n=========================================\n-->`
+    : "";
+
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -56,7 +62,7 @@ export function renderErrorPage(_error?: unknown): string {
         <button class="primary" onclick="location.reload()">Try again</button>
         <a class="secondary" href="/">Go home</a>
       </div>
-    </div>
+    </div>${errorComment}
   </body>
 </html>`;
 }
