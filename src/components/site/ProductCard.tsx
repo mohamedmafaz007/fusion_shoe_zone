@@ -42,8 +42,7 @@ export function ProductCard({ product }: { product: Product }) {
             <ShoppingBag className="h-3.5 w-3.5" /> Add
           </button>
           <Link
-            to="/product/$id"
-            params={{ id: product.id }}
+            to={`/product/${product.id}`}
             className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full glass py-2.5 px-3 text-xs font-bold text-foreground hover:bg-white/25 hover:scale-105 transition duration-300"
           >
             <Eye className="h-3.5 w-3.5" /> View
