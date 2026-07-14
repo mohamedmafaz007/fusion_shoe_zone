@@ -8,10 +8,32 @@
  * displayed directly to users in production.
  */
 export function renderErrorPage(error?: unknown): string {
-  const errorMsg = error instanceof Error ? error.message : typeof error === "string" ? error : "";
-  const errorStack = error instanceof Error ? error.stack : "";
-  const errorComment = errorMsg
-    ? `\n<!-- \n=========================================\nERROR DETAILS (for debugging):\nMessage: ${errorMsg}\nStack:\n${errorStack}\n=========================================\n-->`
+  let errorMsg = "";
+  let errorStack = "";
+  let errorRaw = "";
+
+  if (error) {
+    try {
+      errorRaw = JSON.stringify(error, null, 2);
+    } catch {
+      errorRaw = String(error);
+    }
+
+    if (error instanceof Error) {
+      errorMsg = error.message;
+      errorStack = error.stack ?? "";
+    } else if (typeof error === "string") {
+      errorMsg = error;
+    } else if (typeof error === "object" && error !== null) {
+      errorMsg = (error as any).message ?? (error as any).statusText ?? String(error);
+      errorStack = (error as any).stack ?? "";
+    } else {
+      errorMsg = String(error);
+    }
+  }
+
+  const errorComment = error
+    ? `\n<!-- \n=========================================\nERROR DETAILS (for debugging):\nMessage: ${errorMsg}\nStack:\n${errorStack}\nRaw Details:\n${errorRaw}\n=========================================\n-->`
     : "";
 
   return `<!doctype html>
